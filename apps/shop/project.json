@@ -93,5 +93,10 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": [
+    "myaccount-remote",
+    "checkout-remote",
+    "products-remote"
+  ]
 }

@@ -1,0 +1,120 @@
+{
+  "name": "checkout-remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/checkout-remote/src",
+  "prefix": "nxmegastore",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/checkout-remote",
+        "index": "apps/checkout-remote/src/index.html",
+        "main": "apps/checkout-remote/src/main.ts",
+        "polyfills": "apps/checkout-remote/src/polyfills.ts",
+        "tsConfig": "apps/checkout-remote/tsconfig.app.json",
+        "assets": [
+          "apps/checkout-remote/src/favicon.ico",
+          "apps/checkout-remote/src/assets"
+        ],
+        "styles": ["apps/checkout-remote/src/styles.css"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/checkout-remote/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/checkout-remote/src/environments/environment.ts",
+              "with": "apps/checkout-remote/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/checkout-remote/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "checkout-remote:build:production"
+        },
+        "development": {
+          "browserTarget": "checkout-remote:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "checkout-remote:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/checkout-remote/**/*.ts",
+          "apps/checkout-remote/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/checkout-remote"],
+      "options": {
+        "jestConfig": "apps/checkout-remote/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "checkout-remote:build",
+        "port": 4201
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "checkout-remote:build:development"
+        },
+        "production": {
+          "buildTarget": "checkout-remote:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

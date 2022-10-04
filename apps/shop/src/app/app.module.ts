@@ -13,17 +13,17 @@ import { NxWelcomeComponent } from './nx-welcome.component';
       {
         path: 'checkout',
         loadChildren: () =>
-          import('@nxmegastore/checkout').then((m) => m.CheckoutModule),
+          import('checkout-remote/Module').then((m) => m.RemoteEntryModule),
       },
       {
         path: 'myaccount',
         loadChildren: () =>
-          import('@nxmegastore/myaccount').then((m) => m.MyaccountModule),
+          import('myaccount-remote/Module').then((m) => m.RemoteEntryModule),
       },
       {
         path: 'products',
         loadChildren: () =>
-          import('@nxmegastore/products').then((m) => m.ProductsModule),
+          import('products-remote/Module').then((m) => m.RemoteEntryModule),
       },
     ]),
   ],
