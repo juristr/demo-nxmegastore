@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@nxmegastore/auth": ["libs/auth/src/index.ts"],
+      "@nxmegastore/checkout": ["libs/checkout/src/index.ts"],
+      "@nxmegastore/myaccount": ["libs/myaccount/src/index.ts"],
+      "@nxmegastore/products": ["libs/products/src/index.ts"],
+      "@nxmegastore/ui": ["libs/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
